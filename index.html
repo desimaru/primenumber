@@ -1,31 +1,46 @@
 <!DOCTYPE html>
 
 <html>
-
+    
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>素数</title>
     </head>
 
     <body>
-        <textarea style="height: 500px;;" readonly></textarea>
+        <textarea style="height: 500px;" readonly></textarea>
         <script>
             function pn(n) {
                 if (n <= 1) {
                     return true;
-                } else if(n===2) {
+                } else if (n === 2) {
                     return true;
                 }
                 for (let i = 2; i < Math.sqrt(n); i++) {
-                    if ( n % i === 0) {
+                    if (n % i === 0) {
                         return false;
                     }
                     return true;
                 }
             }
-            const a = [];
-            for (let i = 1; i < 200; i++) {
+            const a = [],
+                b = new URL(window.location.href);
+            if (!b.searchParams.has(n)) {
+                b.searchParams.append(n, 1);
+                if (!b.searchParams.has(m)) {
+                    b.searchParams.append(m, 200);
+                }
+                window.location.href = b;
+            } else if (!b.searchParams.has(m)) {
+                b.searchParams.append(m, 200);
+                window.location.href = b;
+            }
+            for (
+                let i = b.searchParams.get(n);
+                i < b.searchParams.get(m);
+                i++
+            ) {
                 if (pn(i)) {
                     a.push(i);
                 }
@@ -33,5 +48,5 @@
             }
         </script>
     </body>
-    
+
 </html>
