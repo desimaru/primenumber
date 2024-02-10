@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <textarea style="height:100%;"></textarea>
+        <textarea style="height:100%;" readonly></textarea>
         <script>
             function pn(n) {
                 if (n <= 1) {
@@ -25,7 +25,7 @@
                 }
             }
             const a = [];
-            for (let i = 1; i < 10000; i++) {
+            for (let i = 1; i < 200; i++) {
                 if (pn(i)) {
                     a.push(i);
                 }
