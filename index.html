@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <textarea style="width: 100%;"></textarea>
+        <textarea style="height:100%;"></textarea>
         <script>
             function pn(n) {
                 if (n <= 1) {
@@ -24,10 +24,12 @@
                     return true;
                 }
             }
-            for (let i = 1; i < 1000000; i++) {
+            const a = [];
+            for (let i = 1; i < 10000; i++) {
                 if (pn(i)) {
-                    document.querySelector("textarea").value += i;
+                    a.push(i);
                 }
+                document.querySelector("textarea").value += a.join("\n");
             }
         </script>
     </body>
