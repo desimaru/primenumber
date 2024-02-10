@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>素数</title>
+    </head>
+
+    <body>
+        <textarea style="width: 100%;"></textarea>
+        <script>
+            function pn(n) {
+                if (n <= 1) {
+                    return false;
+                } else if(n===2) {
+                    return false;
+                }
+                for (let i = 2; i < Math.sqrt(n); i++) {
+                    if ( n % i === 0) {
+                        return false;
+                    }
+                    return true;
+                }
+            }
+            for (let i = 1; i < 1000000; i++) {
+                if (pn(i)) {
+                    document.querySelector("textarea").value += i;
+                }
+            }
+        </script>
+    </body>
+    
+</html>
