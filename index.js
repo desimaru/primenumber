@@ -23,6 +23,7 @@ if (!b.searchParams.has("n")) {
     b.searchParams.append("m", 200);
     window.location.href = b;
 }
+document.querySelector("title").innerHTML = `${b.searchParams.get("n")}から${b.searchParams.get("m")}までの素数`;
 for (let i = b.searchParams.get("n"); i < b.searchParams.get("m"); i++) {
     if (pn(i)) {
         a.push(i);
