@@ -11,13 +11,15 @@ function pn(n) {
     }
     return true;
 }
+const a = [],
+    b = new URL(window.location.href),
+    n = document.getElementById("n"),
+    m = document.getElementById("m");
 function reload() {
-    b.searchParams.set("n", document.getElementById("n").value);
-    b.searchParams.set("m", document.getElementById("m").value);
+    b.searchParams.set("n", n.value);
+    b.searchParams.set("m", n.value);
     window.location.href = b;
 }
-const a = [],
-    b = new URL(window.location.href);
 if (!b.searchParams.has("n")) {
     b.searchParams.append("n", 1);
     if (!b.searchParams.has("m")) {
@@ -31,6 +33,8 @@ if (!b.searchParams.has("n")) {
 document.querySelector("title").innerHTML = `${b.searchParams.get(
     "n"
 )}から${b.searchParams.get("m")}までの素数`;
+n.value = b.searchParams.get("n");
+m.value = b.searchParams.get("m");
 for (let i = b.searchParams.get("n"); i <= b.searchParams.get("m"); i++) {
     if (pn(i)) {
         a.push(i);
