@@ -17,7 +17,7 @@ const a = [],
     m = document.getElementById("m");
 function reload() {
     b.searchParams.set("n", n.value);
-    b.searchParams.set("m", n.value);
+    b.searchParams.set("m", m.value);
     window.location.href = b;
 }
 if (!b.searchParams.has("n")) {
