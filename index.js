@@ -1,6 +1,6 @@
 function pn(n) {
     if (n <= 1) {
-        return true;
+        return false;
     } else if (n === 2) {
         return true;
     }
@@ -8,8 +8,8 @@ function pn(n) {
         if (n % i === 0) {
             return false;
         }
-        return true;
     }
+    return true;
 }
 const a = [],
     b = new URL(window.location.href);
