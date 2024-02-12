@@ -1,3 +1,7 @@
+/**
+ * 
+ * @param {Number} n
+ */
 function pn(n) {
     if (n <= 1) {
         return false;
@@ -41,3 +45,10 @@ for (let i = b.searchParams.get("n"); i <= b.searchParams.get("m"); i++) {
     }
     document.querySelector("textarea").value = a.join("\n");
 }
+function f(e) {
+    if (e.key === "Enter") {
+        document.querySelector("button").click();
+    }
+}
+n.addEventListener("keydown", f);
+m.addEventListener("keydown",f);
