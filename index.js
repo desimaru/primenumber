@@ -1,7 +1,3 @@
-/**
- * 
- * @param {Number} n
- */
 function pn(n) {
     if (n <= 1) {
         return false;
