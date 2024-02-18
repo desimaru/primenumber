@@ -57,9 +57,7 @@ if (!b.searchParams.has("n")) {
     window.location.href = b;
 }
 // タイトルを「(n)から(m)までの素数」に変更する
-document.querySelector("title").innerHTML = `${b.searchParams.get(
-    "n"
-)}から${b.searchParams.get("m")}までの素数`;
+document.querySelector("title").innerHTML = `${b.searchParams.get("n")}から${b.searchParams.get("m")}までの素数`;
 n.value = b.searchParams.get("n");
 m.value = b.searchParams.get("m");
 // nからmまでの素数を表示する
