@@ -1,9 +1,9 @@
 /**
  * 素数判定をする
- * @param {Number} n 整数
+ * @param {Number} n 自然数
  * @returns {Boolean} 素数かどうか
  */
-function pn(n) {
+function isPrime(n) {
     if (n <= 1) {
         // n=1ならfalseを返す
         return false;
@@ -11,7 +11,7 @@ function pn(n) {
         // n=2ならtrueを返す
         return true;
     }
-    for (let i = 2; i <= Math.sqrt(n); i++) {
+    for (let i = 2; i <= n ** 0.5; i++) {
         if (n % i === 0) {
             // iで割り切れるならfalseを返す
             return false;
@@ -24,13 +24,15 @@ function pn(n) {
  * 素数の配列
  * @type {Number[]}
  */
-const a = [],
+const prime = [],
     /**
      * URLオブジェクト
      * @type {URL}
      */
     b = new URL(window.location.href),
+    /**@type {HTMLInputElement} */
     n = document.getElementById("n"),
+    /** @type {HTMLInputElement} */
     m = document.getElementById("m");
 /**
  * リダイレクトする
@@ -57,7 +59,9 @@ if (!b.searchParams.has("n")) {
     window.location.href = b;
 }
 // タイトルを「(n)から(m)までの素数」に変更する
-document.querySelector("title").innerHTML = `${b.searchParams.get("n")}から${b.searchParams.get("m")}までの素数`;
+document.querySelector("title").innerHTML = `${b.searchParams.get(
+    "n"
+)}から${b.searchParams.get("m")}までの素数`;
 n.value = b.searchParams.get("n");
 m.value = b.searchParams.get("m");
 // nからmまでの素数を表示する
@@ -75,7 +79,7 @@ for (let i = b.searchParams.get("n"); i <= b.searchParams.get("m"); i++) {
  */
 function f(e) {
     if (e.key === "Enter") {
-        document.querySelector("button").click();
+        redirect();
     }
 }
 n.addEventListener("keydown", f);
