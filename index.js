@@ -66,12 +66,12 @@ n.value = b.searchParams.get("n");
 m.value = b.searchParams.get("m");
 // nからmまでの素数を表示する
 for (let i = b.searchParams.get("n"); i <= b.searchParams.get("m"); i++) {
-    if (pn(i)) {
+    if (isPrime(i)) {
         // iが素数ならaにiを追加する
-        a.push(i);
+        prime.push(i);
     }
     // textareaにaを表示する
-    document.querySelector("textarea").value = a.join("\n");
+    document.querySelector("textarea").value = prime.join("\n");
 }
 /**
  * @param {KeyboardEvent} e
