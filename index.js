@@ -62,6 +62,7 @@ if (!b.searchParams.has("n")) {
 document.querySelector("title").innerHTML = `${b.searchParams.get(
     "n"
 )}から${b.searchParams.get("m")}までの素数`;
+document.querySelector("label").innerHTML=document.querySelector("label").innerHTML.replace("1から200までの素数",`${b.searchParams.get("n")}から${b.searchParams.get("m")}までの素数`);
 n.value = b.searchParams.get("n");
 m.value = b.searchParams.get("m");
 // nからmまでの素数を表示する
