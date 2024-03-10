@@ -5,11 +5,9 @@
  * @returns {Boolean} 素数かどうか
  */
 function isPrime(n) {
-    if (n <= 1) {
-        // n=1ならfalseを返す
+    if (n < 2) {
         return false;
     } else if (n === 2) {
-        // n=2ならtrueを返す
         return true;
     }
     for (let i = 2; i <= n ** 0.5; i++) {
