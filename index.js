@@ -49,6 +49,12 @@ if (!b.searchParams.has("m")) {
     b.searchParams.append("m", 200);
 }
 if (w.location.href !== b.toString()) w.location.href = b;
+document.querySelector("label").innerHTML = document
+    .querySelector("label")
+    .innerHTML.replace(
+        "1から200までの素数",
+        `${b.searchParams.get("n")}から${b.searchParams.get("m")}までの素数`
+    );
 // nからmまでの素数を表示する
 {
     const prime=[],
@@ -66,12 +72,6 @@ document.querySelector("textarea").value = prime.join("\n");
 document.querySelector("title").innerHTML = `${b.searchParams.get(
     "n"
 )}から${b.searchParams.get("m")}までの素数`;
-document.querySelector("label").innerHTML = document
-    .querySelector("label")
-    .innerHTML.replace(
-        "1から200までの素数",
-        `${b.searchParams.get("n")}から${b.searchParams.get("m")}までの素数`
-    );
 n.value = b.searchParams.get("n");
 m.value = b.searchParams.get("m");
 /**
