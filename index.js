@@ -48,7 +48,7 @@ if (!b.searchParams.has("m")) {
     // もしmがなければmを200に設定する
     b.searchParams.append("m", 200);
 }
-if (w.location.href !== b) w.location.href = b;
+if (w.location.href !== b.toString()) w.location.href = b;
 // nからmまでの素数を表示する
 {
     const prime=[],
