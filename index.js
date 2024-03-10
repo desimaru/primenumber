@@ -5,12 +5,10 @@
  * @returns {Boolean} 素数かどうか
  */
 function isPrime(n) {
-    if (n < 2) {
-        return false;
-    } else if (n === 2) {
-        return true;
-    }
-    for (let i = 2; i <= n ** 0.5; i++) {
+    if (n < 2) return false;
+    else if (n === 2) return true;
+    const a=n**0.5;
+    for (let i = 2; i <= a; i++) {
         if (n % i === 0) {
             // iで割り切れるならfalseを返す
             return false;
@@ -21,41 +19,48 @@ function isPrime(n) {
 }
 /**
  * 素数の配列
- * @type {Number[]}
+ * @type {number[]}
  */
-const prime = [],
+const w=window,
     /**
      * URLオブジェクト
      * @type {URL}
      */
-    b = new URL(window.location.href),
+    b = new URL(w.location.href),
     /**@type {HTMLInputElement} */
     n = document.getElementById("n"),
     /** @type {HTMLInputElement} */
-    m = document.getElementById("m");
+    m = document.getElementById("m")
 /**
  * リダイレクトする
- * @returns {Void}
+ * @returns {void}
  */
 function redirect() {
     b.searchParams.set("n", n.value);
     b.searchParams.set("m", m.value);
-    window.location.href = b;
+    w.location.href = b;
 }
 if (!b.searchParams.has("n")) {
     // もしnがなければnを1に設定する
     b.searchParams.append("n", 1);
-    if (!b.searchParams.has("m")) {
-        // もしmがなければmを200に設定する
-        b.searchParams.append("m", 200);
-    }
-    // リダイレクト
-    window.location.href = b;
-} else if (!b.searchParams.has("m")) {
+}
+if (!b.searchParams.has("m")) {
     // もしmがなければmを200に設定する
     b.searchParams.append("m", 200);
-    // リダイレクト
-    window.location.href = b;
+}
+if (w.location.href !== b) w.location.href = b;
+// nからmまでの素数を表示する
+{
+    const prime=[],
+    a=b.searchParams.get("m")
+for (let i = b.searchParams.get("n"); i <= a; i++) {
+    if (isPrime(i)) {
+        // iが素数ならaにiを追加する
+        prime.push(i);
+    }
+}
+// textareaにaを表示する
+document.querySelector("textarea").value = prime.join("\n");
 }
 // タイトルを｢(n)から(m)までの素数｣に変更する
 document.querySelector("title").innerHTML = `${b.searchParams.get(
@@ -69,15 +74,6 @@ document.querySelector("label").innerHTML = document
     );
 n.value = b.searchParams.get("n");
 m.value = b.searchParams.get("m");
-// nからmまでの素数を表示する
-for (let i = b.searchParams.get("n"); i <= b.searchParams.get("m"); i++) {
-    if (isPrime(i)) {
-        // iが素数ならaにiを追加する
-        prime.push(i);
-    }
-}
-// textareaにaを表示する
-document.querySelector("textarea").value = prime.join("\n");
 /**
  * @param {KeyboardEvent} e
  * @returns {Void}
