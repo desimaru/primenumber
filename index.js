@@ -55,6 +55,10 @@ document.querySelector("label").innerHTML = document
         "1から200までの素数",
         `${b.searchParams.get("n")}から${b.searchParams.get("m")}までの素数`
     );
+// タイトルを｢(n)から(m)までの素数｣に変更する
+document.querySelector("title").innerHTML = `${b.searchParams.get(
+    "n"
+)}から${b.searchParams.get("m")}までの素数`;
 // nからmまでの素数を表示する
 {
     const prime=[],
@@ -68,10 +72,6 @@ for (let i = b.searchParams.get("n"); i <= a; i++) {
 // textareaにaを表示する
 document.querySelector("textarea").value = prime.join("\n");
 }
-// タイトルを｢(n)から(m)までの素数｣に変更する
-document.querySelector("title").innerHTML = `${b.searchParams.get(
-    "n"
-)}から${b.searchParams.get("m")}までの素数`;
 n.value = b.searchParams.get("n");
 m.value = b.searchParams.get("m");
 /**
