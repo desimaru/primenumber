@@ -1,3 +1,4 @@
+{
 /**
  * 素数判定をする
  * @param {Number} n 自然数
@@ -58,11 +59,16 @@ if (!b.searchParams.has("n")) {
     // リダイレクト
     window.location.href = b;
 }
-// タイトルを「(n)から(m)までの素数」に変更する
+// タイトルを｢(n)から(m)までの素数｣に変更する
 document.querySelector("title").innerHTML = `${b.searchParams.get(
     "n"
 )}から${b.searchParams.get("m")}までの素数`;
-document.querySelector("label").innerHTML=document.querySelector("label").innerHTML.replace("1から200までの素数",`${b.searchParams.get("n")}から${b.searchParams.get("m")}までの素数`);
+document.querySelector("label").innerHTML = document
+    .querySelector("label")
+    .innerHTML.replace(
+        "1から200までの素数",
+        `${b.searchParams.get("n")}から${b.searchParams.get("m")}までの素数`
+    );
 n.value = b.searchParams.get("n");
 m.value = b.searchParams.get("m");
 // nからmまでの素数を表示する
@@ -71,9 +77,9 @@ for (let i = b.searchParams.get("n"); i <= b.searchParams.get("m"); i++) {
         // iが素数ならaにiを追加する
         prime.push(i);
     }
-    // textareaにaを表示する
-    document.querySelector("textarea").value = prime.join("\n");
 }
+// textareaにaを表示する
+document.querySelector("textarea").value = prime.join("\n");
 /**
  * @param {KeyboardEvent} e
  * @returns {Void}
@@ -85,3 +91,4 @@ function f(e) {
 }
 n.addEventListener("keydown", f);
 m.addEventListener("keydown", f);
+}
