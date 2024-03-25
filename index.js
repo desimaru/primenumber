@@ -6,10 +6,9 @@
  */
 function isPrime(n) {
     if (n < 2) return false;
-    else if (n === 2) return true;
-    const a=n**0.5;
-    for (let i = 2; i <= a; i++) {
-        if (n % i === 0) {
+    else if (n===2||n===3||n===5) return true;
+    for (let i = 2,j=0,a=n**0.5; i <= a; i+=[4,2,4,2,4,6,2,6],j++) {
+        if (n % i === 0){
             // iで割り切れるならfalseを返す
             return false;
         }
@@ -17,53 +16,31 @@ function isPrime(n) {
     // nを割り切れなかったらtrueを返す
     return true;
 }
-/**
- * 素数の配列
- * @type {number[]}
- */
+/** @type {Window} */
 const w=window,
     /**
-     * URLオブジェクト
-     * @type {URL}
+     * URLパラメータ
+     * @type {URLSearchParams}
      */
-    b = new URL(w.location.href),
-    /**@type {HTMLInputElement} */
-    n = document.getElementById("n"),
-    /** @type {HTMLInputElement} */
-    m = document.getElementById("m")
-/**
- * リダイレクトする
- * @returns {void}
- */
-function redirect() {
-    b.searchParams.set("n", n.value);
-    b.searchParams.set("m", m.value);
-    w.location.href = b;
-}
-if (!b.searchParams.has("n")) {
-    // もしnがなければnを1に設定する
-    b.searchParams.append("n", 1);
-}
-if (!b.searchParams.has("m")) {
-    // もしmがなければmを200に設定する
-    b.searchParams.append("m", 200);
-}
-if (w.location.href !== b.toString()) w.location.href = b;
-document.querySelector("label").innerHTML = document
-    .querySelector("label")
-    .innerHTML.replace(
+    url = new URLSearchParams(),
+    /**@type {HTMLInputElement[]} */
+    [n,m]=document.getElementsByTagName("input");
+{
+/**@type {HTMLLabelElement} */
+const label=document.querySelector("label");
+label.innerHTML = label.innerHTML.replace(
         "1から200までの素数",
-        `${b.searchParams.get("n")}から${b.searchParams.get("m")}までの素数`
+        `${+url.get("n")}から${+url.get("m")||200}までの素数`
     );
+}
 // タイトルを｢(n)から(m)までの素数｣に変更する
-document.querySelector("title").innerHTML = `${b.searchParams.get(
+document.querySelector("title").innerHTML = `${+url.get(
     "n"
-)}から${b.searchParams.get("m")}までの素数`;
+)}から${+url.get("m")||200}までの素数`;
 // nからmまでの素数を表示する
 {
-    const prime=[],
-    a=b.searchParams.get("m")
-for (let i = b.searchParams.get("n"); i <= a; i++) {
+    const prime=[]
+for (let i = +url.get("n"),a=+url.get("m")||200; i <= a; i++) {
     if (isPrime(i)) {
         // iが素数ならaにiを追加する
         prime.push(i);
@@ -72,15 +49,29 @@ for (let i = b.searchParams.get("n"); i <= a; i++) {
 // textareaにaを表示する
 document.querySelector("textarea").value = prime.join("\n");
 }
-n.value = b.searchParams.get("n");
-m.value = b.searchParams.get("m");
+n.value = +url.get("n");
+m.value = +url.get("m")||200;
 /**
  * @param {KeyboardEvent} e
  * @returns {Void}
  */
 function f(e) {
     if (e.key === "Enter") {
-        redirect();
+        /**@type {URLSearchParams} */
+        const url=new URLSearchParams(),
+        /**@type {number[]}*/
+        prime=[];
+        {
+            const label=document.querySelector("label");
+            label.innerHTML=label.innerHTML.replace(`${+url.get("n")}から${+url.get("m")}までの素数`,`${n.value}から${m.value}までの素数`);
+        }
+        url.set("n",n.value);
+        url.set("m",m.value);
+        w.history.replaceState("","",`?${url.toString()}`);
+        for (let i = +url.get("n"),a=+url.get("m")||200; i <= a; i++)
+            if (isPrime(i))prime.push(i);
+        document.querySelector("textarea").value = prime.join("\n");
+        document.querySelector("title").innerHTML=`${+url.get("n")}から${url.get("m")??200}までの素数`;
     }
 }
 n.addEventListener("keydown", f);
