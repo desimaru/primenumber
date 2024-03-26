@@ -7,7 +7,7 @@
 function isPrime(n) {
     if (n < 2) return false;
     else if (n===2||n===3||n===5) return true;
-    for (let i = 2,j=0,a=n**0.5; i <= a; i+=[4,2,4,2,4,6,2,6],j++) {
+    for (let i = 2,j=0,a=n**0.5; i <= a; i+=[4,2,4,2,4,6,2,6][j%8],j++) {
         if (n % i === 0){
             // iで割り切れるならfalseを返す
             return false;
