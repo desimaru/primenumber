@@ -1,8 +1,8 @@
 {
 /**
  * 素数判定をする
- * @param {Number} n 自然数
- * @returns {Boolean} 素数かどうか
+ * @param {number} n 自然数
+ * @returns {boolean} 素数かどうか
  */
 function isPrime(n) {
     if (n < 2) return false;
@@ -58,7 +58,7 @@ n.value = +url.get("n");
 m.value = +url.get("m") || 200;
 /**
  * @param {KeyboardEvent} e
- * @returns {Void}
+ * @returns {void}
  */
 function f(e) {
     if (e.key === "Enter") {
@@ -69,15 +69,20 @@ function f(e) {
         {
             const label = document.querySelector("label");
             label.innerHTML = label.innerHTML.replace(
-                `${+url.get("n")||0}から${+url.get("m")||200}までの素数`,
+                `${+url.get("n") || 0}から${
+                    +url.get("m") || 200
+                }までの素数`,
                 `${n.value}から${m.value}までの素数`
             );
         }
         url.set("n", n.value);
         url.set("m", m.value);
         w.history.replaceState("", "", `?${url.toString()}`);
-        for (let i = +url.get("n"), a = +url.get("m") || 200; i <= a; i++)
-            if (isPrime(i)) prime.push(i);
+        for (let i = +url.get("n"), a = +url.get("m") || 200; i <= a; i++){
+            if (isPrime(i)){
+                prime.push(i);
+            }
+        }
         document.querySelector("textarea").value = prime.join("\n");
         document.querySelector("title").innerHTML = `${+url.get("n")}から${
             url.get("m") ?? 200
